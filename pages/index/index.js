@@ -14,7 +14,8 @@ Page({
       {}
     ],
     resultValidations: [],
-    residueDegree: 10
+    residueDegree: 10,
+    ruleToggler: false
   },
   _n: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   onLoad: function () {
@@ -30,6 +31,8 @@ Page({
       hasUserInfo: true
     })
   },
+  // 生成随机答案
+  // 答案规则4个不重复的个位数
   createRandomNumer (n, l) {
     const ns = [...l]
     if (n === (10 - ns.length)) {
@@ -42,6 +45,7 @@ Page({
       return this.createRandomNumer(n, ns)
     }
   },
+  // 输入框选中状态切换
   handleSelect (e) {
     const { index } = e.target.dataset
     const { inputAnswers } = this.data
@@ -51,19 +55,32 @@ Page({
     })
     this.setData({ inputAnswers })
   },
+  // 输入处理
   inputAnswer (e) {
     const { index } = e.target.dataset
     const { inputAnswers } = this.data
-    if (inputAnswers.map(v => v.value).includes(index)) return
-
     let idx
+    let cursorFlag = false
+    let value = index
+    if (inputAnswers.map(v => v.value).includes(index)) {
+      value = undefined
+      idx = inputAnswers.map(v => v.value).indexOf(index)
+      cursorFlag = true
+    }
     inputAnswers.forEach((v, i) => {
-      if (v.select) {
-        v.value = index
-        idx = i
-        if (i !== inputAnswers.length - 1) {
-          v.select = false
-          idx = i + 1
+      if (cursorFlag) {
+        if (i === idx) v.value = value
+        v.select = false
+      } else {
+        if (v.select) {
+          v.value = value
+          if (!cursorFlag) {
+            idx = i
+            if (i !== inputAnswers.length - 1) {
+              v.select = false
+              idx = i + 1
+            }
+          }
         }
       }
     })
@@ -72,12 +89,14 @@ Page({
       inputAnswers
     })
   },
+  // 竞猜处理
   guessing () {
     const { residueDegree, resultValidations, correct, inputAnswers } = this.data
     if (inputAnswers.some(v => typeof v.value === 'undefined') || resultValidations === 0) return
     const answer = inputAnswers.map(v => v.value).join('')
     resultValidations[10 - residueDegree].answer = answer
     resultValidations[10 - residueDegree].correct = correct
+    resultValidations[10 - residueDegree].check = true
     this.inputReset()
     this.setData({
       residueDegree: residueDegree - 1,
@@ -121,5 +140,11 @@ Page({
       })
     } while (resultValidations.length < 10)
     this.setData({ resultValidations })
+  },
+  toggleRule () {
+    const { ruleToggler } = this.data
+    this.setData({
+      ruleToggler: !ruleToggler
+    })
   }
 })

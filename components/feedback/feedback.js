@@ -10,6 +10,10 @@ Component({
     correct: {
       type: String,
       value: '0000'
+    },
+    check: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -17,11 +21,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    dots: []
+    dots: [],
+    _dotTotal: 8
   },
   attached () {
     const dots = []
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < this.data._dotTotal; index++) {
       dots.push({
       })
     }
@@ -42,7 +47,7 @@ Component({
         dots[index].allCorrect = true
       }
       for (let index = 0; index < B; index++) {
-        dots[5 + index].partialCorrect = true
+        dots[(this.data._dotTotal / 2) + index].partialCorrect = true
       }
       this.setData({
         dots
@@ -53,6 +58,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 答案验证
+    // A 数字正确且位置正确
+    // B 数字正确位置错误
     check (answer, correct) {
       let A = 0
       let B

@@ -7,12 +7,57 @@
   height: 100vh;
   width: 100vw;
   justify-content: space-between;
-  background-size: cover;
+  .rule {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    &.show{
+      display: flex;
+    }
+    & > .desc{
+      width: 80vw;
+      height: 70vh;
+      background: #f3f3f3;
+      border-radius: 40rpx;
+      transform: translateY(5vh);
+      padding: 80rpx 30rpx;
+      display: flex;
+      flex-direction: column;
+      & > p{
+        & + p{
+          margin-top: 20rpx;
+        }
+      }
+      &>.btnColse{
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+        background: #fff;
+        font-size: 64rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 60rpx;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    } 
+  }
   .tooltipsArea{
     // background: red;
     height: 60rpx;
     padding: 0 5%;
-    &>.reset{
+    display: flex;
+    justify-content: space-between;
+    & > span{
       font-size: 32rpx;
       font-weight: bold;
     }
@@ -28,7 +73,7 @@
       height: 160rpx;
       border: 1px solid @borderColor;
       border-radius: @wrapRadius;
-      margin-bottom: 10%;
+      margin-bottom: 20%;
       display: flex;
       position: relative;
       z-index: 9;

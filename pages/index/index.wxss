@@ -4,13 +4,56 @@
   height: 100vh;
   width: 100vw;
   justify-content: space-between;
-  background-size: cover;
+}
+.container .rule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.container .rule.show {
+  display: flex;
+}
+.container .rule > .desc {
+  width: 80vw;
+  height: 70vh;
+  background: #f3f3f3;
+  border-radius: 40rpx;
+  transform: translateY(5vh);
+  padding: 80rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+.container .rule > .desc > p + p {
+  margin-top: 20rpx;
+}
+.container .rule > .desc > .btnColse {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 64rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .container .tooltipsArea {
   height: 60rpx;
   padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
 }
-.container .tooltipsArea > .reset {
+.container .tooltipsArea > span {
   font-size: 32rpx;
   font-weight: bold;
 }
@@ -26,7 +69,7 @@
   height: 160rpx;
   border: 1px solid #666;
   border-radius: 22rpx;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
   display: flex;
   position: relative;
   z-index: 9;
