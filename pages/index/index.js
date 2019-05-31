@@ -34,7 +34,7 @@ Page({
   // 生成随机答案
   // 答案规则4个不重复的个位数
   createRandomNumer (n, l) {
-    const ns = [...l]
+    const ns = [...l].sort(() => Math.random() - 0.5)
     if (n === (10 - ns.length)) {
       return this._n.filter(v => !ns.includes(v)).sort(() => Math.random() - 0.5).join('')
     } else {
