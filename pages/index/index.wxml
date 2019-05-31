@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="container" style="background:url('../../static/bg.png')">
+  <view class="tooltipsArea">
+    <span class="reset" bindtap="reset">重 置</span>
+  </view>
+  <view class="guessArea">
+    <view class="guessContainer">
+      <view class="outputWrap">
+        <view class="output {{item.select ? 'select' : ''}}" bindtap="handleSelect" data-index="{{index}}" wx:for="{{inputAnswers}}" wx:key="{{index}}">
+          <view class="cursor" hidden="{{!item.select}}"></view>
+          {{item.value}}
+        </view>
+      </view>
+      <view class="dealWrap">
+        <span>剩余{{residueDegree}}次</span>
+        <view class="btn" bindtap="guessing">竞猜</view>
+      </view>
+    </view>
+  </view>
+  <view class="resultsArea">
+    <Feedback wx:for="{{resultValidations}}" correct="{{item.correct}}" answer="{{item.answer}}" wx:key="{{index}}"/>
+  </view>
+  <view class="inputArea">
+    <view class="inputNunber" bindtap="inputAnswer" data-index="{{index}}" wx:for="{{10}}" wx:key="{{index}}">
+      {{index}}
+    </view>
+  </view>
+</view>

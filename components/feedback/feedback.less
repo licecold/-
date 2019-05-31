@@ -1,0 +1,42 @@
+.feedback{
+  width: 300rpx;
+  height: 80rpx;
+  box-shadow: 0px 0px 3px #d6d6d6;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .result{
+    color: #333;
+    flex: 1;
+    text-align: center;
+  }
+  .check{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    & > view {
+      height: 40rpx;
+      width:80rpx;
+      padding: 0 30rpx;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .dot{
+      margin: 0 2rpx;
+      width: 12rpx;
+      height: 12rpx;
+      border-radius: 50%;
+      background: #e4d9c8;
+      &.allCorrect{
+        background: #738b53;
+      }
+      &.partialCorrect{
+        background: #d55343;
+      }
+    }
+  }
+}

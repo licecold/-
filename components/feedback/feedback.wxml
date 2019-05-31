@@ -1,0 +1,12 @@
+<!--components/feedback/feedback.wxml-->
+<view class="feedback" >
+  <view class="result" >
+    {{answer? answer : '0000'}}
+  </view>
+  <view class="check" >
+    <view>
+      <view class="dot {{item.allCorrect ? 'allCorrect' : ''}} {{item.partialCorrect ? 'partialCorrect' : ''}}" wx:for="{{dots}}" wx:key="{{index}}">
+    </view>
+    </view>
+  </view>
+</view>
