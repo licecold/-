@@ -62,6 +62,7 @@ Page({
     let idx
     let cursorFlag = false
     let value = index
+    if (!inputAnswers.some(v => v.select)) return
     if (inputAnswers.map(v => v.value).includes(index)) {
       value = undefined
       idx = inputAnswers.map(v => v.value).indexOf(index)
